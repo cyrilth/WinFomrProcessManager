@@ -29,4 +29,4 @@ jobs:
       run: dotnet build ${{ env.PROJECT_PATH }} --configuration Release --no-restore
 
     - name: Publish
-      run: dotnet publish {{ env.PROJECT_PATH }} -c Release --self-contained -r win-x64 -p:PublishSingleFile=true --no-build
+      run: dotnet publish ${{ env.PROJECT_PATH }} -c Release --self-contained -r win-x64 -p:PublishSingleFile=true --no-build
