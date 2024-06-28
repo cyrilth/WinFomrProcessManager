@@ -7,6 +7,8 @@ on:
   pull_request:
     branches: [main]
 
+env:
+  PROJECT_PATH: WinFomrProcessManager/WinFomrProcessManager.csproj
 
 jobs:
   build-and-publish:
@@ -21,10 +23,10 @@ jobs:
         dotnet-version: '8.0.x'
 
     - name: Install dependencies
-      run: dotnet restore
+      run: dotnet restore ${{ env.PROJECT_PATH }}
 
     - name: Build
-      run: dotnet build --configuration Release
+      run: dotnet build ${{ env.PROJECT_PATH }} --configuration Release --no-restore
 
     - name: Publish
-      run: dotnet publish -c Release -r win-x64 -p:PublishSingleFile=true --self-contained true -o ./publish --no-build
+      run: dotnet publish {{ env.PROJECT_PATH }} -c Release -r win-x64 -p:PublishSingleFile=true --self-contained true --no-build
