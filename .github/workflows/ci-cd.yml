@@ -3,9 +3,8 @@ name: .Net Core CI/CD
 
 on:
   push:
-    branches: [main]
-  pull_request:
-    branches: [main]
+    tags:
+     - "WinForemProcessManager/v*"
 
 env:
   PROJECT_PATH: WinFomrProcessManager/WinFomrProcessManager.csproj
