@@ -1,6 +1,7 @@
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using System.Diagnostics;
+using System.Reflection;
 
 namespace WinFomrProcessManager
 {
@@ -40,12 +41,15 @@ namespace WinFomrProcessManager
         {
             this.hostApplicationLifetime = hostApplicationLifetime;
 
-            trayIcon = new NotifyIcon
+            using (Stream iconStream = Assembly.GetExecutingAssembly().GetManifestResourceStream("WinFomrProcessManager.assests.poweroff.ico")!)
             {
-                Icon = new Icon("assests/poweroff.ico"),
-                Visible = true,
-                Text = "Process Killer App"
-            };
+                trayIcon = new NotifyIcon
+                {
+                    Icon = new Icon(iconStream),
+                    Visible = true,
+                    Text = "Process Killer App"
+                };
+            }
 
 
             ContextMenuStrip contextMenuStrip = new();
