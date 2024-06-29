@@ -42,4 +42,5 @@ jobs:
       with:
         files: ./publish/WinFomrProcessManager.exe
         tag_name: ${{ github.ref }}
+        name: "${{ github.ref }}"
         token: ${{ secrets.GITHUB_TOKEN }}
